@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>জান্নাতের পথে সাথীর সন্ধানে | রফিকে হায়াত</title>
-  <!-- Tailwind CSS CDN + Google Fonts -->
+  <title>রফিকে হায়াত | জান্নাতের পথে সাথীর সন্ধানে</title>
+  <!-- Tailwind CSS + Google Fonts + Font Awesome Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Custom config for primary color: Islamic Green theme -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -18,143 +19,204 @@
             gentleGray: '#f9fafb',
           },
           fontFamily: {
-            sans: ['Inter', 'Segoe UI', 'Tahoma', 'sans-serif'],
+            sans: ['Inter', 'Hind Siliguri', 'system-ui', 'sans-serif'],
           },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out',
+            'slide-up': 'slideUp 0.4s ease-out',
+          },
+          keyframes: {
+            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+            slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+          }
         }
       }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <style>
-    /* custom scroll & form enhancements */
     body {
       scroll-behavior: smooth;
     }
     .form-card input, .form-card select, .form-card textarea {
       transition: all 0.2s ease;
       border: 1px solid #e2e8f0;
+      background-color: #fff;
     }
     .form-card input:focus, .form-card select:focus, .form-card textarea:focus {
       border-color: #0f5e47;
-      ring: 2px solid #0f5e47;
       outline: none;
-      box-shadow: 0 0 0 2px rgba(15,94,71,0.2);
+      box-shadow: 0 0 0 3px rgba(15,94,71,0.15);
+      ring: 2px solid #0f5e47;
     }
     .radio-group label {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       cursor: pointer;
+      transition: all 0.2s;
+    }
+    .radio-group label:hover {
+      color: #0f5e47;
     }
     .sidebar-note {
-      background: linear-gradient(145deg, #fef9e6, #fff5e0);
+      background: linear-gradient(135deg, #fef9e6 0%, #fff5e0 100%);
       border-right: 4px solid #c9a03d;
     }
+    .hover-lift {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+    }
+    .step-indicator {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .step-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #cbd5e1;
+      transition: all 0.3s;
+    }
+    .step-dot.active {
+      background-color: #0f5e47;
+      width: 28px;
+      border-radius: 20px;
+    }
     @media (max-width: 768px) {
-      .grid-cols-2 {
-        grid-template-columns: 1fr;
-      }
+      .grid-cols-2 { grid-template-columns: 1fr; }
+    }
+    /* কাস্টম চেকবক্স ও রেডিওর স্টাইল */
+    input[type="checkbox"], input[type="radio"] {
+      accent-color: #0f5e47;
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+    /* টুলটিপ হেল্পার */
+    .help-tip {
+      cursor: help;
+      border-bottom: 1px dashed #c9a03d;
     }
   </style>
 </head>
 <body class="bg-gentleGray font-sans antialiased">
 
-  <!-- HEADER / HERO SECTION -->
-  <header class="bg-white shadow-sm sticky top-0 z-30 border-b border-primary/20">
+  <!-- হেডার স্টিকি উইথ শ্যাডো -->
+  <header class="bg-white/90 backdrop-blur-sm shadow-md sticky top-0 z-30 border-b border-primary/20 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-3">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-md">
-          <span class="text-white text-xl font-bold">ر</span>
+        <div class="w-10 h-10 bg-gradient-to-br from-primary to-primaryLight rounded-full flex items-center justify-center shadow-lg">
+          <i class="fas fa-hands-praying text-white text-lg"></i>
         </div>
         <div>
           <h1 class="text-2xl md:text-3xl font-bold text-primary tracking-tight">রফিকে হায়াত</h1>
-          <p class="text-sm text-gray-600 italic">“জান্নাতের পথে সাথীর সন্ধানে...”</p>
+          <p class="text-sm text-gray-600 italic flex items-center gap-1"><i class="fas fa-star-of-life text-gold text-xs"></i> “জান্নাতের পথে সাথীর সন্ধানে...”</p>
         </div>
       </div>
-      <div class="bg-primary/10 px-5 py-2 rounded-full text-primary font-medium text-sm">শরীয়তসম্মত পরিচয় | নিরাপদ মাধ্যম</div>
+      <div class="bg-primary/10 px-5 py-2 rounded-full text-primary font-medium text-sm shadow-inner"><i class="fas fa-shield-alt mr-1"></i> শরীয়তসম্মত পরিচয় | নিরাপদ মাধ্যম</div>
     </div>
   </header>
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <!-- GOALS & PRINCIPLES SECTION - double grid -->
-    <div class="grid md:grid-cols-2 gap-8 mb-14">
-      <!-- Left: লক্ষ্য -->
-      <div class="bg-white rounded-2xl shadow-md p-6 border-l-8 border-primary">
-        <h2 class="text-2xl font-bold text-primary flex items-center gap-2">🎯 আমাদের লক্ষ্য</h2>
+    
+    <!-- অ্যানিমেটেড গ্রিড সেকশন -->
+    <div class="grid md:grid-cols-2 gap-8 mb-14 animate-fade-in">
+      <!-- লক্ষ্য কার্ড -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 border-l-8 border-primary hover-lift">
+        <h2 class="text-2xl font-bold text-primary flex items-center gap-2"><i class="fas fa-bullseye text-gold"></i> আমাদের লক্ষ্য</h2>
         <ul class="mt-4 space-y-2 text-gray-700">
-          <li>✓ দ্বীনদার পাত্র-পাত্রীর শরীয়তসম্মত পরিচয়ের একটি নিরাপদ মাধ্যম তৈরি করা</li>
-          <li>✓ বিয়েকে সহজ করা – বালেগ-বালিগা হওয়ার পর দ্রুত বিবাহে উৎসাহিত করা</li>
-          <li>✓ জিনা ও হারাম সম্পর্কমুক্ত সমাজ গঠনে সহায়তা করা</li>
-          <li>✓ বিধবা, তালাকপ্রাপ্তা ও অসহায় নারীদের বিবাহের সুযোগ বৃদ্ধি করা</li>
-          <li>✓ দ্বীনদার পরিবার গঠনে সহযোগিতা করা</li>
+          <li><i class="fas fa-check-circle text-primary text-sm mr-2"></i> দ্বীনদার পাত্র-পাত্রীর শরীয়তসম্মত পরিচয়ের একটি নিরাপদ মাধ্যম তৈরি করা</li>
+          <li><i class="fas fa-check-circle text-primary text-sm mr-2"></i> বিয়েকে সহজ করা – বালেগ-বালিগা হওয়ার পর দ্রুত বিবাহে উৎসাহিত করা</li>
+          <li><i class="fas fa-check-circle text-primary text-sm mr-2"></i> জিনা ও হারাম সম্পর্কমুক্ত সমাজ গঠনে সহায়তা করা</li>
+          <li><i class="fas fa-check-circle text-primary text-sm mr-2"></i> বিধবা, তালাকপ্রাপ্তা ও অসহায় নারীদের বিবাহের সুযোগ বৃদ্ধি করা</li>
+          <li><i class="fas fa-check-circle text-primary text-sm mr-2"></i> দ্বীনদার পরিবার গঠনে সহযোগিতা করা</li>
         </ul>
       </div>
-      <!-- Right: নীতিগত অবস্থান -->
-      <div class="bg-white rounded-2xl shadow-md p-6 border-r-8 border-gold sidebar-note">
-        <h2 class="text-2xl font-bold text-gold flex items-center gap-2">📜 আমাদের নীতিগত অবস্থান</h2>
+      <!-- নীতিগত অবস্থান কার্ড -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 border-r-8 border-gold sidebar-note hover-lift">
+        <h2 class="text-2xl font-bold text-gold flex items-center gap-2"><i class="fas fa-balance-scale"></i> আমাদের নীতিগত অবস্থান</h2>
         <p class="mt-3 text-gray-700 leading-relaxed">একাধিক বিবাহ ইসলামের একটি বৈধ ও প্রজ্ঞাপূর্ণ বিধান। আমরা বিশ্বাস করি, আল্লাহর প্রতিটি বিধান মানবজাতির জন্য কল্যাণকর। সমাজে বিধবা, তালাকপ্রাপ্তা ও অসহায় নারীদের জন্য শরীয়তসম্মত বহুবিবাহ মর্যাদাপূর্ণ সমাধান হতে পারে। যে সকল দ্বীনদার নারী দ্বিতীয়, তৃতীয় বা চতুর্থ স্ত্রী হতে রাজি, তাদের জন্যও সুযোগ তৈরি করাই আমাদের উদ্দেশ্য।</p>
       </div>
     </div>
 
-    <!-- বৈশিষ্ট্য + গোপনীয়তা (two columns) -->
-    <div class="grid md:grid-cols-2 gap-8 mb-14">
-      <div class="bg-primary/5 rounded-xl p-6">
-        <h3 class="text-xl font-bold text-primary mb-3">⭐ আমাদের বৈশিষ্ট্য</h3>
-        <ul class="grid grid-cols-1 gap-2 text-gray-700 list-disc pl-5">
-          <li>শুধুমাত্র দ্বীনদার ও দ্বীনের পথে আন্তরিক ব্যক্তিদের জন্য</li>
-          <li>ছবি জমা নেওয়া বা সংরক্ষণ করা হয় না</li>
-          <li>ব্যক্তিগত তথ্য আমানত হিসেবে সংরক্ষণ</li>
-          <li>দেশ-বিদেশের যেকোনো স্থান থেকে বায়োডাটা জমা দেওয়া যায়</li>
-          <li>আমরা পাত্র-পাত্রীর সংগ্রহ করি না, শুধু যোগাযোগের মাধ্যম</li>
-          <li>প্রচলিত ঘটক নই; গোপনীয়তা সর্বোচ্চ অগ্রাধিকার</li>
+    <!-- বৈশিষ্ট্য + গোপনীয়তা (স্লাইড আপ) -->
+    <div class="grid md:grid-cols-2 gap-8 mb-14 animate-slide-up">
+      <div class="bg-primary/5 rounded-xl p-6 shadow-md hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-primary mb-3"><i class="fas fa-star text-gold mr-2"></i> আমাদের বৈশিষ্ট্য</h3>
+        <ul class="space-y-2 text-gray-700">
+          <li><i class="fas fa-angle-right text-primary mr-2"></i> শুধুমাত্র দ্বীনদার ও দ্বীনের পথে আন্তরিক ব্যক্তিদের জন্য</li>
+          <li><i class="fas fa-angle-right text-primary mr-2"></i> ছবি জমা নেওয়া বা সংরক্ষণ করা হয় না</li>
+          <li><i class="fas fa-angle-right text-primary mr-2"></i> ব্যক্তিগত তথ্য আমানত হিসেবে সংরক্ষণ</li>
+          <li><i class="fas fa-angle-right text-primary mr-2"></i> দেশ-বিদেশের যেকোনো স্থান থেকে বায়োডাটা জমা দেওয়া যায়</li>
+          <li><i class="fas fa-angle-right text-primary mr-2"></i> আমরা পাত্র-পাত্রীর সংগ্রহ করি না, শুধু যোগাযোগের মাধ্যম</li>
+          <li><i class="fas fa-angle-right text-primary mr-2"></i> প্রচলিত ঘটক নই; গোপনীয়তা সর্বোচ্চ অগ্রাধিকার</li>
         </ul>
       </div>
-      <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-        <h3 class="text-xl font-bold text-primary mb-3">🔒 গোপনীয়তা নীতিমালা</h3>
+      <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-primary mb-3"><i class="fas fa-lock text-gold mr-2"></i> গোপনীয়তা নীতিমালা</h3>
         <p class="text-gray-700">পাত্র-পাত্রীর পূর্ণ নাম, পূর্ণ ঠিকানা, যোগাযোগ নম্বর ও অন্যান্য ব্যক্তিগত তথ্য প্রকাশ করা হয় না। এসব তথ্য শুধুমাত্র প্রস্তাবিত পাত্র/পাত্রীকে প্রয়োজন অনুযায়ী সরবরাহ করা হয়। আমরা একটি <strong>আমানত</strong> হিসেবে তথ্য সংরক্ষণ করি এবং ইসলামী আদর্শে পরিচালিত হই।</p>
-        <div class="mt-4 bg-gray-50 p-3 rounded-lg text-sm">📢 Telegram-এ বায়োডাটা প্রকাশ করা হবে, সেখান থেকে পছন্দের বায়োডাটার সাথে যোগাযোগের জন্য আবেদন করতে হবে (যোগাযোগ তথ্য প্রদানের প্রশাসনিক খরচ ২৫ টাকা)।</div>
+        <div class="mt-4 bg-gray-50 p-3 rounded-lg text-sm border-l-4 border-primary"><i class="fab fa-telegram text-primary mr-2"></i> Telegram-এ বায়োডাটা প্রকাশ করা হবে, সেখান থেকে পছন্দের বায়োডাটার সাথে যোগাযোগের জন্য আবেদন করতে হবে (যোগাযোগ তথ্য প্রদানের প্রশাসনিক খরচ ২৫ টাকা)।</div>
       </div>
     </div>
 
-    <!-- নিয়মাবলি ও ফি কার্ড -->
-    <div class="bg-white rounded-xl shadow-md p-6 mb-14 border-t-4 border-gold">
-      <h3 class="text-2xl font-bold text-primary mb-2">নিয়মাবলি ও কার্যপ্রণালী</h3>
-      <div class="grid md:grid-cols-3 gap-5 mt-4">
-        <div class="bg-green-50 p-4 rounded-xl">
+    <!-- নিয়মাবলি ও ফি কার্ড (আকর্ষণীয়) -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-14 border-t-4 border-gold hover-lift">
+      <h3 class="text-2xl font-bold text-primary mb-4"><i class="fas fa-file-contract mr-2 text-gold"></i> নিয়মাবলি ও কার্যপ্রণালী</h3>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="bg-green-50 p-4 rounded-xl text-center">
+          <i class="fas fa-calendar-alt text-primary text-2xl mb-2"></i>
           <p class="font-bold text-primary">📆 উদ্বোধনী অফার</p>
-          <p>প্রথম ১০০ দিন কোনো ফি ছাড়াই বায়োডাটা গ্রহণ (ইন শা আল্লাহ)</p>
+          <p class="text-sm">প্রথম ১০০ দিন কোনো ফি ছাড়াই বায়োডাটা গ্রহণ (ইন শা আল্লাহ)</p>
         </div>
-        <div class="bg-gray-50 p-4 rounded-xl">
+        <div class="bg-gray-50 p-4 rounded-xl text-center">
+          <i class="fas fa-money-bill-wave text-primary text-2xl mb-2"></i>
           <p class="font-bold text-primary">💰 ১০০ দিন পর সদস্য ফি</p>
-          <p>পাত্র: ১০০ টাকা | পাত্রী: ৫০ টাকা | বিদেশ: ১০ ডলার</p>
+          <p class="text-sm">পাত্র: ১০০ টাকা | পাত্রী: ৫০ টাকা | বিদেশ: ১০ ডলার</p>
         </div>
-        <div class="bg-gray-50 p-4 rounded-xl">
+        <div class="bg-gray-50 p-4 rounded-xl text-center">
+          <i class="fab fa-whatsapp text-primary text-2xl mb-2"></i>
           <p class="font-bold text-primary">📱 যোগাযোগ মাধ্যম</p>
-          <p>WhatsApp নাম্বার (যোগাযোগ) + Telegram নাম্বার (বায়োডাটা দেখার জন্য আবশ্যক)</p>
-          <p class="text-sm mt-1">*উভয়পক্ষ নিজেরা যাচাই-বাছাই করবেন। আমরা দায়ী নই চূড়ান্ত সত্যতার জন্য।</p>
+          <p class="text-sm">WhatsApp নাম্বার (যোগাযোগ) + Telegram নাম্বার (বায়োডাটা দেখার জন্য আবশ্যক)</p>
+          <p class="text-xs mt-1 text-gray-500">*উভয়পক্ষ নিজেরা যাচাই-বাছাই করবেন। আমরা দায়ী নই চূড়ান্ত সত্যতার জন্য।</p>
         </div>
       </div>
-      <div class="mt-5 text-sm text-gray-600 italic bg-yellow-50 p-3 rounded-lg">মুমিন হিসেবে ভালো-মন্দ আল্লাহর তাকদিরের অংশ – এই বিশ্বাস রাখা উচিত। আমরা শুধু মাধ্যম, দ্বায়িত্ব সংশ্লিষ্ট পক্ষের।</div>
+      <div class="mt-5 text-sm text-gray-600 italic bg-yellow-50 p-3 rounded-lg flex items-start gap-2"><i class="fas fa-exclamation-triangle text-gold mt-1"></i> মুমিন হিসেবে ভালো-মন্দ আল্লাহর তাকদিরের অংশ – এই বিশ্বাস রাখা উচিত। আমরা শুধু মাধ্যম, দ্বায়িত্ব সংশ্লিষ্ট পক্ষের।</div>
     </div>
 
-    <!-- ========== বায়োডাটা ফরম (MAIN FORM) ========== -->
-    <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 form-card">
+    <!-- তথ্য সংযোজন: ইসলামিক গাইডলাইন সেকশন (নতুন, মূল তথ্য অপরিবর্তিত) -->
+    <div class="grid md:grid-cols-2 gap-6 mb-10">
+      <div class="bg-gradient-to-r from-primary/5 to-transparent p-5 rounded-2xl">
+        <h4 class="font-bold text-primary text-lg"><i class="fas fa-book-quran mr-2"></i> ইসলামে বিবাহের গুরুত্ব</h4>
+        <p class="text-gray-600 text-sm mt-2">“বিয়ে আমার সুন্নাত, যে আমার সুন্নাত থেকে মুখ ফিরিয়ে নেয় সে আমার উম্মত নয়।” (ইবনে মাজাহ) — আমরা বিবাহকে অর্ধেক দ্বীন পূর্ণ করার মাধ্যম হিসেবে দেখি।</p>
+      </div>
+      <div class="bg-gradient-to-l from-gold/10 to-transparent p-5 rounded-2xl">
+        <h4 class="font-bold text-gold text-lg"><i class="fas fa-question-circle mr-2"></i> জিজ্ঞাসা (FAQ)</h4>
+        <p class="text-gray-600 text-sm mt-2">প্রশ্ন থাকলে টেলিগ্রামে জানাতে পারেন। সাধারণ উত্তর: বায়োডাটা জমা দেওয়ার ২৪-৭২ ঘণ্টার মধ্যে টেলিগ্রাম চ্যানেলে প্রকাশ করা হয় ইন শা আল্লাহ।</p>
+      </div>
+    </div>
+
+    <!-- ========== মূল বায়োডাটা ফরম (সব তথ্য আগের মতো অপরিবর্তিত) ========== -->
+    <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 form-card transition-all duration-300" id="formContainer">
       <div class="text-center mb-8 border-b pb-4">
-        <h2 class="text-3xl font-extrabold text-primary inline-block px-6 py-2 bg-primary/10 rounded-full">📝 বায়োডাটা ফরম পূরণ করুন</h2>
+        <h2 class="text-3xl font-extrabold text-primary inline-block px-6 py-2 bg-primary/10 rounded-full"><i class="fas fa-pen-alt mr-2"></i> বায়োডাটা ফরম পূরণ করুন</h2>
         <p class="text-gray-500 mt-2">যত বেশি তথ্য পূরণ করবেন, আপনার বায়োডাটার গ্রহণযোগ্যতা তত সহজ হবে ইন শা আল্লাহ</p>
-        <p class="text-red-600 text-sm mt-1">* চিহ্নিত ফিল্ড বাধ্যতামূলক</p>
+        <p class="text-red-600 text-sm mt-1"><i class="fas fa-asterisk text-xs"></i> চিহ্নিত ফিল্ড বাধ্যতামূলক</p>
       </div>
 
       <form id="bioDataForm" class="space-y-8">
-        <!-- স্বয়ংক্রিয় অংশ: তারিখ ও আইডি (ডামি) -->
+        <!-- স্বয়ংক্রিয় অংশ: তারিখ ও আইডি -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
-          <div><label class="block font-semibold">ফরম পূরণের তারিখ</label><input type="text" id="currentDate" readonly class="w-full bg-gray-100 p-2 rounded border"></div>
-          <div><label class="block font-semibold">বায়োডাটা আইডি (স্বয়ংক্রিয়)</label><input type="text" id="autoId" readonly class="w-full bg-gray-100 p-2 rounded border" value="RH-2412-XXX"></div>
+          <div><label class="block font-semibold"><i class="far fa-calendar-alt mr-1"></i> ফরম পূরণের তারিখ</label><input type="text" id="currentDate" readonly class="w-full bg-gray-100 p-2 rounded border"></div>
+          <div><label class="block font-semibold"><i class="fas fa-id-card mr-1"></i> বায়োডাটা আইডি (স্বয়ংক্রিয়)</label><input type="text" id="autoId" readonly class="w-full bg-gray-100 p-2 rounded border"></div>
         </div>
 
         <!-- আবেদনকারীর ধরন -->
         <div>
-          <label class="block font-bold text-gray-800 mb-2">২. আবেদনকারীর ধরন *</label>
+          <label class="block font-bold text-gray-800 mb-2">২. আবেদনকারীর ধরন <span class="text-red-500">*</span></label>
           <div class="flex flex-wrap gap-5 radio-group">
             <label><input type="radio" name="applicantType" value="পাত্র" required> পাত্র</label>
             <label><input type="radio" name="applicantType" value="পাত্রী"> পাত্রী</label>
@@ -163,44 +225,44 @@
           </div>
         </div>
 
-        <!-- ব্যক্তিগত পরিচিতি -->
+        <!-- ব্যক্তিগত পরিচিতি (মূল ফিল্ড) -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div><label class="block font-semibold">পূর্ণ নাম *</label><input type="text" required class="w-full border p-2 rounded" placeholder="আপনার নাম"></div>
-          <div><label class="block font-semibold">জন্ম তারিখ *</label><input type="date" required class="w-full border p-2 rounded" id="dob"></div>
+          <div><label class="block font-semibold">পূর্ণ নাম <span class="text-red-500">*</span></label><input type="text" required class="w-full border p-2 rounded" placeholder="আপনার নাম"></div>
+          <div><label class="block font-semibold">জন্ম তারিখ <span class="text-red-500">*</span></label><input type="date" required class="w-full border p-2 rounded" id="dob"></div>
           <div><label class="block font-semibold">বয়স (স্বয়ংক্রিয়)</label><input type="text" id="ageDisplay" readonly class="w-full bg-gray-100 p-2 rounded"></div>
           <div><label class="block font-semibold">জাতীয় পরিচয়পত্র নম্বর (ঐচ্ছিক)</label><input type="text" class="w-full border p-2 rounded"></div>
-          <div><label class="block font-semibold">বর্তমান জেলা *</label><input type="text" required class="w-full border p-2 rounded"></div>
-          <div><label class="block font-semibold">বর্তমান বিভাগ *</label><input type="text" required class="w-full border p-2 rounded"></div>
+          <div><label class="block font-semibold">বর্তমান জেলা <span class="text-red-500">*</span></label><input type="text" required class="w-full border p-2 rounded"></div>
+          <div><label class="block font-semibold">বর্তমান বিভাগ <span class="text-red-500">*</span></label><input type="text" required class="w-full border p-2 rounded"></div>
           <div><label class="block font-semibold">স্থায়ী জেলা (ঐচ্ছিক)</label><input type="text" class="w-full border p-2 rounded"></div>
         </div>
 
         <!-- যোগাযোগ তথ্য -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 border-t pt-5">
-          <div><label class="block font-semibold">WhatsApp নাম্বার * (যোগাযোগের জন্য)</label><input type="tel" required class="w-full border p-2 rounded" placeholder="+8801XXXXXXXXX"></div>
-          <div><label class="block font-semibold">Telegram নাম্বার * (বায়োডাটা দেখার জন্য)</label><input type="text" required class="w-full border p-2 rounded" placeholder="@username বা নম্বর"></div>
-          <div><label class="block font-semibold">অভিভাবকের নাম *</label><input type="text" required class="w-full border p-2 rounded"></div>
-          <div><label class="block font-semibold">অভিভাবকের সম্পর্ক *</label><input type="text" required class="w-full border p-2 rounded" placeholder="পিতা/ভাই/চাচা"></div>
+          <div><label class="block font-semibold">WhatsApp নাম্বার <span class="text-red-500">*</span> (যোগাযোগের জন্য)</label><input type="tel" required class="w-full border p-2 rounded" placeholder="+8801XXXXXXXXX"></div>
+          <div><label class="block font-semibold">Telegram নাম্বার <span class="text-red-500">*</span> (বায়োডাটা দেখার জন্য)</label><input type="text" required class="w-full border p-2 rounded" placeholder="@username বা নম্বর"></div>
+          <div><label class="block font-semibold">অভিভাবকের নাম <span class="text-red-500">*</span></label><input type="text" required class="w-full border p-2 rounded"></div>
+          <div><label class="block font-semibold">অভিভাবকের সম্পর্ক <span class="text-red-500">*</span></label><input type="text" required class="w-full border p-2 rounded" placeholder="পিতা/ভাই/চাচা"></div>
           <div><label class="block font-semibold">অভিভাবকের নাম্বার (ঐচ্ছিক)</label><input type="tel" class="w-full border p-2 rounded"></div>
         </div>
 
-        <!-- শারীরিক তথ্য - সংক্ষিপ্ত -->
+        <!-- শারীরিক তথ্য -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div><label class="font-semibold">উচ্চতা (ফুট/ইঞ্চি) *</label><input type="text" required class="border p-2 rounded w-full" placeholder="例如 5'4\"></div>
+          <div><label class="font-semibold">উচ্চতা (ফুট/ইঞ্চি) <span class="text-red-500">*</span></label><input type="text" required class="border p-2 rounded w-full" placeholder="যেমন 5'4"></div>
           <div><label class="font-semibold">ওজন (ঐচ্ছিক)</label><input type="text" class="border p-2 rounded w-full" placeholder="কেজি"></div>
           <div><label class="font-semibold">গায়ের রং</label><select class="border p-2 rounded w-full"><option>উজ্জ্বল ফর্সা</option><option>ফর্সা</option><option>উজ্জ্বল শ্যামলা</option><option>শ্যামলা</option><option>কালো</option></select></div>
           <div class="md:col-span-1"><label class="font-semibold">শারীরিক সমস্যা আছে?</label><select id="physicalIssue" class="border p-2 rounded w-full"><option value="না">না</option><option value="হ্যাঁ">হ্যাঁ</option></select></div>
           <div class="md:col-span-2"><input type="text" id="physicalDetails" placeholder="হ্যাঁ হলে বিস্তারিত লিখুন" class="border p-2 rounded w-full"></div>
         </div>
 
-        <!-- পারিবারিক পরিচিতি + দ্বীনী অবস্থা - কিছু অংশ সংক্ষিপ্ত করে -->
+        <!-- পারিবারিক পরিচিতি -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div><label>পিতার নাম</label><input class="w-full border p-2 rounded"></div><div><label>পিতার পেশা</label><input class="w-full border p-2 rounded"></div>
           <div><label>মাতার নাম</label><input class="w-full border p-2 rounded"></div><div><label>মাতার পেশা</label><input class="w-full border p-2 rounded"></div>
           <div><label>ভাই কয়জন</label><input class="w-full border p-2 rounded"></div><div><label>বোন কয়জন</label><input class="w-full border p-2 rounded"></div>
         </div>
 
-        <!-- ব্যক্তিগত দ্বীনী অবস্থা (checkboxes style) -->
-        <fieldset class="border p-4 rounded-lg">
+        <!-- ব্যক্তিগত দ্বীনী অবস্থা (চেকবক্স) -->
+        <fieldset class="border p-4 rounded-lg shadow-sm">
           <legend class="font-bold text-primary px-2">ব্যক্তিগত দ্বীনী অবস্থা</legend>
           <div class="grid grid-cols-2 gap-2 mt-2">
             <label><input type="checkbox" class="mr-1"> পাঁচ ওয়াক্ত সালাত নিয়মিত</label>
@@ -214,7 +276,7 @@
           <div class="mt-2"><label class="font-semibold">নিজের দ্বীনী অবস্থা বিস্তারিত লিখুন</label><textarea rows="2" class="w-full border rounded p-2"></textarea></div>
         </fieldset>
 
-        <!-- মাযহাব, শিক্ষার ধরন, যোগ্যতা, অর্থনীতি -->
+        <!-- মাযহাব, শিক্ষা, অর্থনীতি -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div><label class="font-semibold">মাযহাব/ফিকহি অনুসরণ</label><select class="w-full border p-2 rounded"><option>হানাফী</option><option>শাফেয়ী</option><option>মালেকী</option><option>হাম্বলী</option><option>আহলে হাদীস</option><option>অন্যান্য</option></select></div>
           <div><label class="font-semibold">শিক্ষার ধরন</label><select class="w-full border p-2 rounded"><option>কওমি</option><option>আলিয়া</option><option>জেনারেল</option><option>স্বশিক্ষিত</option><option>লেখাপড়া করা হয়নি</option></select></div>
@@ -224,7 +286,7 @@
           <div class="md:col-span-2"><label>দক্ষতা, অভিজ্ঞতা ও আগ্রহ</label><textarea rows="2" class="w-full border p-2 rounded"></textarea></div>
         </div>
 
-        <!-- বৈবাহিক অবস্থা (Dynamic based on applicantType - simplified but working) -->
+        <!-- বৈবাহিক অবস্থা -->
         <div class="grid md:grid-cols-2 gap-5">
           <div>
             <label class="font-bold">বৈবাহিক অবস্থা (পাত্র/পাত্রী অনুযায়ী)</label>
@@ -235,7 +297,7 @@
           <div id="childrenDiv" class="hidden"><label>সন্তান আছে?</label><select id="hasChildren"><option>না</option><option>হ্যাঁ</option></select><div id="childrenCount" class="mt-1 hidden"><input placeholder="ছেলে সংখ্যা" class="w-20 inline mr-2 border rounded"><input placeholder="মেয়ে সংখ্যা" class="w-20 border rounded"></div></div>
         </div>
 
-        <!-- জীবনসঙ্গীর চাহিদা (সংক্ষিপ্ত) -->
+        <!-- জীবনসঙ্গীর চাহিদা -->
         <fieldset class="border p-5 rounded-lg bg-gray-50">
           <legend class="font-bold text-primary text-lg">জীবনসঙ্গীর চাহিদা</legend>
           <div class="grid md:grid-cols-3 gap-4">
@@ -257,25 +319,24 @@
         </div>
 
         <div class="text-center pt-4">
-          <button type="submit" class="bg-primary hover:bg-primaryLight text-white font-bold py-3 px-10 rounded-full shadow-lg transition transform hover:scale-105">📨 বায়োডাটা জমা দিন</button>
+          <button type="submit" id="submitBtn" class="bg-primary hover:bg-primaryLight text-white font-bold py-3 px-10 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-2 mx-auto"><i class="fas fa-paper-plane"></i> বায়োডাটা জমা দিন</button>
         </div>
-        <p class="text-xs text-center text-gray-500 mt-4">*জমা দেওয়ার পর আপনার তথ্য আমানত হিসেবে সংরক্ষিত হবে। প্রশাসন ২৪-৭২ ঘণ্টার মধ্যে Telegram চ্যানেলে বায়োডাটা প্রকাশ করবে ইন শা আল্লাহ।</p>
+        <p class="text-xs text-center text-gray-500 mt-4"><i class="fas fa-clock"></i> *জমা দেওয়ার পর আপনার তথ্য আমানত হিসেবে সংরক্ষিত হবে। প্রশাসন ২৪-৭২ ঘণ্টার মধ্যে Telegram চ্যানেলে বায়োডাটা প্রকাশ করবে ইন শা আল্লাহ।</p>
       </form>
     </div>
 
-    <!-- ফুটার / যোগাযোগ নির্দেশিকা -->
+    <!-- ফুটার উন্নত -->
     <div class="mt-12 text-center text-gray-500 border-t pt-8 text-sm">
-      <p>রফিকে হায়াত – দ্বীনদারদের জন্য নিরাপদ মিলনমেলা | কোনো ছবি সংরক্ষণ করা হয় না, গোপনীয়তা সর্বোচ্চ গুরুত্বপূর্ণ</p>
-      <p class="mt-2">যোগাযোগ: প্রশাসনিক প্রয়োজনে হোয়াটসঅ্যাপ সমর্থন – শুধুমাত্র ফরম সংক্রান্ত জিজ্ঞাসা</p>
-      <p class="mt-2 font-semibold text-primary">“আমরা প্রচলিত ঘটক নই, শুধুমাত্র যোগাযোগের মাধ্যম”</p>
+      <p><i class="fas fa-mosque text-primary mr-1"></i> রফিকে হায়াত – দ্বীনদারদের জন্য নিরাপদ মিলনমেলা | কোনো ছবি সংরক্ষণ করা হয় না, গোপনীয়তা সর্বোচ্চ গুরুত্বপূর্ণ</p>
+      <p class="mt-2"><i class="fab fa-whatsapp text-green-600"></i> যোগাযোগ: প্রশাসনিক প্রয়োজনে হোয়াটসঅ্যাপ সমর্থন – শুধুমাত্র ফরম সংক্রান্ত জিজ্ঞাসা</p>
+      <p class="mt-2 font-semibold text-primary"><i class="fas fa-handshake"></i> “আমরা প্রচলিত ঘটক নই, শুধুমাত্র যোগাযোগের মাধ্যম”</p>
     </div>
   </main>
 
   <script>
-    // স্বয়ংক্রিয় তারিখ এবং বয়স হিসাব
+    // স্বয়ংক্রিয় তারিখ এবং বায়োডাটা আইডি
     const today = new Date();
-    const formattedDate = today.toLocaleDateString('bn-BD');
-    document.getElementById('currentDate').value = formattedDate;
+    document.getElementById('currentDate').value = today.toLocaleDateString('bn-BD');
     document.getElementById('autoId').value = 'RH-' + Math.floor(Math.random()*10000) + '-' + today.getFullYear();
 
     // বয়স ক্যালকুলেটর
@@ -292,7 +353,7 @@
       } else ageDisplay.value = '';
     });
 
-    // শারীরিক সমস্যা দেখানো
+    // শারীরিক সমস্যা টগল
     const physicalIssueSelect = document.getElementById('physicalIssue');
     const physicalDetails = document.getElementById('physicalDetails');
     physicalIssueSelect.addEventListener('change', function(){
@@ -316,13 +377,23 @@
       });
     }
 
-    // অন্যান্য ফরম সাবমিট প্রদর্শন
+    // ফরম সাবমিট আরও মার্জিত এলার্ট + লোডিং ইফেক্ট (তথ্য অপরিবর্তিত রেখে)
     const form = document.getElementById('bioDataForm');
+    const submitBtn = document.getElementById('submitBtn');
     form.addEventListener('submit', function(e){
       e.preventDefault();
       if(!form.checkValidity()){ form.reportValidity(); return; }
-      alert('আলহামদুলিল্লাহ! আপনার বায়োডাটা জমা হয়েছে। দয়া করে অপেক্ষা করুন, প্রশাসন টেলিগ্রাম চ্যানেলে তথ্য প্রকাশ করবে ইন শা আল্লাহ
+      // লোডিং ইফেক্ট
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> জমা হচ্ছে...';
+      submitBtn.disabled = true;
+      setTimeout(() => {
+        alert('আলহামদুলিল্লাহ! আপনার বায়োডাটা জমা হয়েছে। দয়া করে অপেক্ষা করুন, প্রশাসন টেলিগ্রাম চ্যানেলে তথ্য প্রকাশ করবে ইন শা আল্লাহ।');
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        // (ঐচ্ছিক) ফর্ম রিসেট না করলেও ভালো, ব্যবহারকারী নিজে সিদ্ধান্ত নেবেন
+      }, 800);
+    });
   </script>
 </body>
 </html>
-```
